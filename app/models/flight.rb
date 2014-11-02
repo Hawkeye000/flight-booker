@@ -1,4 +1,4 @@
 class Flight < ActiveRecord::Base
-  has_one :to_airport, as: :airport
-  has_one :from_airport, as: :airport
+  belongs_to :to_airport, class_name:"Airport"
+  belongs_to :from_airport, class_name:"Airport"
 end
