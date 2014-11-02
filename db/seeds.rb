@@ -9,12 +9,17 @@
 
 Airport.delete_all
 
+puts "Getting airport data"
 airport_data = open("http://ourairports.com/data/airports.csv")
+airports_added = 0
 
 CSV.parse(airport_data, headers:true) do |row|
   Airport.create(code:row['iata_code'])
   if row['iata_code']
     $stdout.flush
-    print "Created Airport #{row['iata_code']}\r"
+    airports_added += 1
+    print "Created airport #{row['iata_code']} #{airports_added} airports added\r"
   end
 end
+
+puts "Finished adding airports"

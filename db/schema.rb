@@ -11,12 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141102183043) do
+ActiveRecord::Schema.define(version: 20141102203303) do
 
   create_table "airports", force: true do |t|
     t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "flights", force: true do |t|
+    t.integer  "from_airport_id"
+    t.integer  "to_airport_id"
+    t.datetime "datetime"
+    t.time     "duration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "flights", ["from_airport_id"], name: "index_flights_on_from_airport_id"
+  add_index "flights", ["to_airport_id"], name: "index_flights_on_to_airport_id"
 
 end
