@@ -4,7 +4,7 @@ class CreateFlights < ActiveRecord::Migration
       t.references :from_airport, index: true
       t.references :to_airport, index: true
       t.datetime :datetime
-      t.time :duration
+      t.integer :duration #stored in seconds
 
       t.timestamps
     end

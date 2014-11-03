@@ -9,12 +9,12 @@
 
 Airport.delete_all
 
-puts "Getting airport data"
+puts "Getting airport data..."
 airport_data = open("http://ourairports.com/data/airports.csv")
 airports_added = 0
 
 CSV.parse(airport_data, headers:true) do |row|
-  
+
   if row['iata_code']
     Airport.create(code:row['iata_code'])
     $stdout.flush
@@ -23,8 +23,20 @@ CSV.parse(airport_data, headers:true) do |row|
   end
 
   if airports_added > 100
+    $stdout.flush
+    puts "Added #{airports_added} airport(s)"
     break
   end
 end
 
 puts "Finished adding airports"
+
+puts "Adding flights..."
+50.times do |i|
+  Flight.create(
+      to_airport_id:i,
+      from_airport_id:i+1,
+      datetime:DateTime.now+i.hours.to_i,
+      duration:i.minutes.to_i)
+end
+puts "Finished adding flights"
