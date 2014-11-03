@@ -1,0 +1,22 @@
+<h1>Flights</h1>
+
+<table>
+  <tr>
+    <th>From</th>
+    <th>To</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Duration</th>
+  </tr>
+  <% if @flights.any? %>
+    <% @flights.each do |flight| %>
+    <tr>
+      <td><%= flight.from_airport.code %></td>
+      <td><%= flight.to_airport.code %></td>
+      <td><%= flight.datetime.strftime("%m/%d/%Y") %></td>
+      <td><%= flight.datetime.strftime("%I:%M %p") %></td>
+      <td><%= "#{flight.duration/60/60} Hours, #{flight.duration/60%60} Minutes" %></td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>

@@ -8,6 +8,7 @@
 ['csv', 'open-uri'].each { |lib| require lib }
 
 Airport.delete_all
+Flight.delete_all
 
 puts "Getting airport data..."
 airport_data = open("http://ourairports.com/data/airports.csv")
@@ -34,8 +35,8 @@ puts "Finished adding airports"
 puts "Adding flights..."
 50.times do |i|
   Flight.create(
-      to_airport_id:i,
-      from_airport_id:i+1,
+      to_airport_id:i+1,
+      from_airport_id:i+2,
       datetime:DateTime.now+i.hours.to_i,
       duration:i.minutes.to_i)
 end
