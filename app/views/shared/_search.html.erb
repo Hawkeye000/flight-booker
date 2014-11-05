@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-8">
+    <%= form_tag("/", method: "get") do %>
+      <%= label_tag(:from, "Leaving From:") %>
+      <%= select(:airport,:code,Airport.find(:all).collect { |a| [a.code, a.id] }) %>
+      <%= label_tag(:from, "Going To:") %>
+      <%= select(:airport,:code,Airport.find(:all).collect { |a| [a.code, a.id] }) %>
+      <%= label_tag(:passengers, "Number of Passengers:") %>
+      <%= select(:)
+    <% end %>
+  </div>
+</div>
