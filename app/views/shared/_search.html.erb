@@ -4,11 +4,14 @@
   <div class="col-md-8">
     <%= form_tag("/", method: "get") do %>
       <%= label_tag(:from, "Leaving From:") %>
-      <%= select(:airport,:code,Airport.find(:all).collect { |a| [a.code, a.id] }) %>
-      <%= label_tag(:from, "Going To:") %>
-      <%= select(:airport,:code,Airport.find(:all).collect { |a| [a.code, a.id] }) %>
-      <%= label_tag(:passengers, "Number of Passengers:") %>
-      <%= select(:)
+      <%= select_tag(:from_airport_id, options_for_select(Airport.find(:all).collect { |a| [a.code, a.id] })) %>
+      <%= label_tag(:to_airport_id, "Going To:") %>
+      <%= select_tag(:airport,options_for_select(Airport.find(:all).collect { |a| [a.code, a.id] } )) %>
+      <%= label_tag(:passenger_number, "Number of Passengers:") %>
+      <%= select_tag(:passenger_number, options_for_select((1..4).collect { |num| [num.to_s, num] } )) %>
+      <%= label_tag(:date, "On:") %>
+      <%= select_tag(:flight_dates, options_for_select(Flight.all_dates)) %>
+      <%= submit_tag("Search", class:"button") %>
     <% end %>
   </div>
 </div>
