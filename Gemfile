@@ -43,3 +43,6 @@ end
 
 # Use debugger
 gem 'debugger', group: [:development, :test]
+
+# Data generator for seed
+gem 'faker'
