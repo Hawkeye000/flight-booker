@@ -1,7 +1,7 @@
 FlightBooker::Application.routes.draw do
 
   resources :flights, only: [:index]
-  resources :bookings, only: [:new]
+  resources :bookings, only: [:index, :new]
 
   root 'flights#index'
 
