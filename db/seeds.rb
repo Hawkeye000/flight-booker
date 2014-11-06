@@ -53,30 +53,15 @@ Airport.create(code:"ATL") # 7
 
 # Add Flights
 
-Flight.create(to_airport_id:1, from_airport_id:3,
-              datetime:DateTime.new(2014,11,14,4,30),
-              duration:6.hours)
-Flight.create(to_airport_id:3, from_airport_id:1,
-              datetime:DateTime.new(2014,11,20,16,30),
-              duration:5.hours)
-Flight.create(to_airport_id:5, from_airport_id:6,
-              datetime:DateTime.new(2014,11,28,12,45),
-              duration:(2.hours+30.minutes))
-Flight.create(to_airport_id:7, from_airport_id:4,
-              datetime:DateTime.new(2014,11,16,9,05),
-              duration:3.hours)
-Flight.create(to_airport_id:1, from_airport_id:2,
-              datetime:DateTime.new(2014,11,20,18,30),
-              duration:(1.hours+40.minutes))
-Flight.create(to_airport_id:5, from_airport_id:4,
-              datetime:DateTime.new(2014,11,10,11,45),
-              duration:3.hours)
-Flight.create(to_airport_id:2, from_airport_id:1,
-              datetime:DateTime.new(2014,11,14,10,30),
-              duration:(1.hours+40.minutes))
-Flight.create(to_airport_id:1, from_airport_id:7,
-              datetime:DateTime.new(2014,11,17,16,10),
-              duration:(4.hours+55.minutes))
-Flight.create(to_airport_id:7, from_airport_id:3,
-              datetime:DateTime.new(2014,11,21,6,35),
-              duration:6.hours)
+2000.times do |i|
+  Flight.create(
+    to_airport_id:Airport.all.sample.id,
+    from_airport_id:Airport.all.sample.id,
+    datetime:Faker::Time.forward(5), # random dates up to month from now
+    duration:Faker::Number.between(45.minutes, 7.hours)
+  )
+  $stdout.flush
+  print "Created #{i} Flights\r"
+end
+
+puts "Finished Seeding Airports and Flights"
