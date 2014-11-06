@@ -1,0 +1,26 @@
+<% if @bookings.any? %>
+  <table class="table table-stripted table-condensed">
+    <thead>
+      <tr>
+        <th>Booking ID</th>
+        <th>Flight ID</th>
+        <th colspan="2">Passenger 1</th>
+        <th colspan="2">Passenger 2</th>
+        <th colspan="2">Passenger 3</th>
+        <th colspan="2">Passenger 4</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.id %></td>
+        <td><%= booking.flight_id %></td>
+        <% @booking.passengers.each do |passenger| %>
+          <td><%= passenger.name %></td>
+          <td><%= passenger.email %></td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
