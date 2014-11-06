@@ -2,16 +2,19 @@
   <div class="col-md-2">
   </div>
   <div class="col-md-8">
-    <%= form_tag("/", method: "get") do %>
+    <%= form_tag("/", method: "get", class:"form-inline") do %>
       <%= label_tag(:from_airport_id, "Leaving From:") %>
-      <%= select_tag(:from_airport_id, options_for_select(Airport.find(:all).collect { |a| [a.code, a.id] }, params[:from_airport_id])) %>
+      <%= select_tag(:from_airport_id,
+        options_for_select(Airport.find(:all).collect { |a| [a.code, a.id] }, params[:from_airport_id]), class:"form-control") %>
       <%= label_tag(:to_airport_id, "Going To:") %>
-      <%= select_tag(:to_airport_id,options_for_select(Airport.find(:all).collect { |a| [a.code, a.id] }, params[:to_airport_id] )) %>
+      <%= select_tag(:to_airport_id,
+        options_for_select(Airport.find(:all).collect { |a| [a.code, a.id] }, params[:to_airport_id] ), class:"form-control") %>
       <%= label_tag(:passenger_quantity, "Number of Passengers:") %>
-      <%= select_tag(:passenger_quantity, options_for_select((1..4).collect { |num| [num.to_s, num] }, params[:passenger_quantity] )) %>
+      <%= select_tag(:passenger_quantity,
+        options_for_select((1..4).collect { |num| [num.to_s, num] }, params[:passenger_quantity] ), class:"form-control") %>
       <%= label_tag(:date, "On:") %>
-      <%= select_tag(:date, options_for_select(Flight.all_dates, params[:date])) %>
-      <%= submit_tag("Search", class:"button") %>
+      <%= select_tag(:date, options_for_select(Flight.all_dates, params[:date]), class:"form-control") %>
+      <%= submit_tag("Search", class:"btn btn-primary") %>
     <% end %>
   </div>
 </div>
