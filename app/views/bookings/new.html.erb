@@ -1,17 +1,23 @@
 <h1>Book Flight</h1>
 <h2>
-  <%= @flight.to_airport.code %> ->
-  <%= @flight.from_airport.code %>
+  <%= @booking.flight.to_airport.code %> ->
+  <%= @booking.flight.from_airport.code %>
 </h2>
 <h4>
-  <%= @flight.datetime.to_formatted_s(:long) %>
+  <%= @booking.flight.datetime.to_formatted_s(:long) %>
 </h4>
 <div class="row">
   <h3>Enter Passenger Info:</h3>
-  <%= form_for @booking do |b| %>
-    <% @passengers.each do |passenger| %>
-      Pasenger Data Placeholder
-    <% end %>
-    <%= b.submit %>
+  <%= form_for @booking do |f| %>
+    <ol>
+      <%= f.fields_for :passengers do |passenger_form| %>
+        <li>
+          <%= passenger_form.label :full_name %>
+          <%= passenger_form.text_field :full_name %>
+          <%= passenger_form.label :email %>
+          <%= passenger_form.text_field :email %>
+        </li>
+      <% end %>
+    </ol>
   <% end %>
 </div>
