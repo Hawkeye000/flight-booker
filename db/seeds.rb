@@ -53,10 +53,11 @@ Airport.create(code:"ATL") # 7
 
 # Add Flights
 
-2000.times do |i|
+500.times do |i|
+  airport_ids = Airport.all.sample(2).collect { |a| a.id }
   Flight.create(
-    to_airport_id:Airport.all.sample.id,
-    from_airport_id:Airport.all.sample.id,
+    to_airport_id:airport_ids[0],
+    from_airport_id:airport_ids[1],
     datetime:Faker::Time.forward(5), # random dates up to month from now
     duration:Faker::Number.between(45.minutes, 7.hours)
   )
