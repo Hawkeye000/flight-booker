@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
 
   def index
-    redirect_to root_path
+    @bookings = Booking.all
   end
 
   def new
@@ -10,6 +10,10 @@ class BookingsController < ApplicationController
     params[:passenger_quantity].to_i.times do
        @booking.passengers.build
     end
+  end
+
+  def create
+
   end
 
 end
