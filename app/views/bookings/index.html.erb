@@ -15,7 +15,7 @@
       <tr>
         <td><%= booking.id %></td>
         <td><%= booking.flight_id %></td>
-        <% @booking.passengers.each do |passenger| %>
+        <% booking.passengers.each do |passenger| %>
           <td><%= passenger.name %></td>
           <td><%= passenger.email %></td>
         <% end %>
