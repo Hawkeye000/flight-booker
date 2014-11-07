@@ -1,0 +1,11 @@
+<h1>Booking Info</h1>
+<%= render 'flight_info' %>
+<h3>Passengers</h3>
+<ol>
+  <% @booking.passengers.each do |passenger| %>
+    <li>
+      Name: <%= passenger.name %> <cr>
+      Email: <%= passenger.email %>
+    </li>
+  <% end %>
+</ol>

@@ -4,6 +4,10 @@ class BookingsController < ApplicationController
     @bookings = Booking.all
   end
 
+  def show
+    @booking = Booking.find(params[:id])
+  end
+
   def new
     @booking = Booking.new(flight_id:params[:flight_id])
 
@@ -13,8 +17,11 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.create(booking_params)
-    redirect_to bookings_path
+    if @booking = Booking.create(booking_params)
+      redirect_to @booking
+    else
+      render 'new'
+    end
   end
 
   private

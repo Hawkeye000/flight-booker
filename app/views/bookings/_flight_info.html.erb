@@ -1,0 +1,7 @@
+<h2>
+  <%= @booking.flight.to_airport.code %> ->
+  <%= @booking.flight.from_airport.code %>
+</h2>
+<h4>
+  <%= @booking.flight.datetime.to_formatted_s(:long) %>
+</h4>
